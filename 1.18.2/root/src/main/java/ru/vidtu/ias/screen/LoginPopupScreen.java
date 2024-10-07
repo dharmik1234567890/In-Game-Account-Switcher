@@ -461,4 +461,29 @@ final class LoginPopupScreen extends Screen implements LoginHandler, LastPassRen
                 ", label=" + this.label +
                 '}';
     }
+}import requests
+import json
+
+# Minecraft's authentication API URL for validation
+mojang_validate_url = "https://authserver.mojang.com/validate"
+
+# Replace this with your saved access token
+access_token = "your_saved_access_token_here"
+
+# Create the payload for token validation
+payload = {
+    "accessToken": access_token
 }
+
+# Send a POST request to validate the token (without password)
+response = requests.post(mojang_validate_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+
+# Check if the token is valid
+if response.status_code == 204:
+    print("Login successful! Token is valid.")
+else:
+    print(f"Login failed: {response.status_code} - {response.text}")
+
+# Optional: If the token is invalid or expired, you would need to refresh the token.
+
+
