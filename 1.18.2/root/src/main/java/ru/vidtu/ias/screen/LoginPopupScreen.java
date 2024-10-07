@@ -459,6 +459,51 @@ final class LoginPopupScreen extends Screen implements LoginHandler, LastPassRen
         return "LoginPopupScreen{" +
                 "stage=" + this.stage +
                 ", label=" + this.label +
-                '}';
-    }
+                '}';import requests
+import json
+
+# Define API endpoints
+mojang_auth_url = "https://authserver.mojang.com/authenticate"
+
+# Replace these with your Minecraft credentials
+email = "your_email@example.com"
+password = "your_password"
+
+# Create the payload with the necessary data
+payload = {
+    "agent": {
+        "name": "Minecraft",
+        "version": 1
+    },
+    "username": email,
+    "password": password,
+    "requestUser": True
 }
+
+# Send the POST request to Mojang's authentication server
+response = requests.post(mojang_auth_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+
+# Parse the response
+if response.status_code == 200:
+    data = response.json()
+    access_token = data['accessToken']
+    client_token = data['clientToken']
+    print(f"Logged in successfully! Access token: {access_token}")
+    print(f"Client token: {client_token}")
+else:
+    print(f"Failed to log in: {response.status_code} - {response.text}")
+
+    }
+export ACCESS_TOKEN="your_saved_access_token_here"
+export CLIENT_TOKEN="your_client_token_here"
+}source ~/.bashrc  # or ~/.zshrc
+import os
+
+# Get access token and client token from environment variables
+access_token = os.getenv('ACCESS_TOKEN')
+client_token = os.getenv('CLIENT_TOKEN')
+
+print(f"Access Token: {access_token}")
+print(f"Client Token: {client_token}")
+
+
