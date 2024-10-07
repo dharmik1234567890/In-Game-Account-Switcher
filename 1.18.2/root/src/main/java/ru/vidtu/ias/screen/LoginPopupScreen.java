@@ -456,7 +456,7 @@ final class LoginPopupScreen extends Screen implements LoginHandler, LastPassRen
 
     @Override
     public String toString() {
-        return "LoginPopupScreen{" +
+        return "OnlineLoginPopupScreen{" +
                 "stage=" + this.stage +
                 ", label=" + this.label +
                 '}';
